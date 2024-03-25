@@ -19,5 +19,4 @@ dependencies:
   - r-magrittr
   - r-visreg
   - r-rattle
-  - r-reprtree
   - r-remotes
