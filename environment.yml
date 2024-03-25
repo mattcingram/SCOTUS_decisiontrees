@@ -7,3 +7,18 @@ dependencies:
   - r-markdown
   - r-rmarkdown
   - r-tinytex
+  - r-pacman
+  - r-aod
+  - r-ggplot2
+  - r-caTools
+  - r-rpart
+  - r-rpart.plot
+  - r-randomForest
+  - r-party
+  - r-tree
+  - r-magrittr
+  - r-visreg
+  - r-rattle
+  - r-reprtree
+  - r-remotes
+)
