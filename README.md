@@ -4,4 +4,10 @@ For remote access to computing resources covered in class, click on the logo bel
 
 All you need is a web browser and internet access.
 
+To access RStudio directly:
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/mattcingram/344decisiontress_2024/HEAD?urlpath=rstudio)
+
+To access JupyterLab environment:
+
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/mattcingram/344decisiontress_2024/HEAD)
