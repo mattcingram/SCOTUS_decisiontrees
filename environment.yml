@@ -8,6 +8,7 @@ dependencies:
   - r-rmarkdown
   - r-tinytex
   - r-pacman
+  - r-magrittr
   - r-aod
   - r-ggplot2
   - r-caTools
