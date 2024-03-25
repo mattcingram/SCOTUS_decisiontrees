@@ -21,21 +21,21 @@ getwd()
 
 # The following package should already be accessible in the container.
 #install.packages("pacman", repos="https://cloud.r-project.org")
-#library(pacman)
-#p_load(aod,
-#       ggplot2,
-#       caTools,
-#       rpart,
-#       rpart.plot,
-#       randomForest,
-#       party, # another tree/classification package
-#       tree,
-#       magrittr,
-#       visreg,
-#       rattle, # fancy rpart plots
-#       reprtree,
-#       remotes
-#)
+library(pacman)
+p_load(aod,
+       ggplot2,
+       caTools,
+       rpart,
+       rpart.plot,
+       randomForest,
+       party, # another tree/classification package
+       tree,
+       magrittr,
+       visreg,
+       rattle, # fancy rpart plots
+       reprtree,
+       remotes
+)
 
 #######################################
 # note: if reprtree not installed
