@@ -9,39 +9,33 @@
 #############################################
 
 ########################
-# SET DIRECTORY
+# DIRECTORY STRUCTURE
 ########################
 
 # check curret working directory
-getwd()
-
-# set
-path <- 'C:/Users/mi122167/Dropbox/SUNYAlbany/PredictingSCOTUS/Data/SCDB'
-setwd(path)
-
-# check again
 getwd()
 
 ########################
 # SET ENVIRONMENT
 ########################
 
+# The following package should already be accessible in the container.
 #install.packages("pacman", repos="https://cloud.r-project.org")
-library(pacman)
-p_load(aod,
-       ggplot2,
-       caTools,
-       rpart,
-       rpart.plot,
-       randomForest,
-       party, # another tree/classification package
-       tree,
-       magrittr,
-       visreg,
-       rattle, # fancy rpart plots
-       reprtree,
-       remotes
-)
+#library(pacman)
+#p_load(aod,
+#       ggplot2,
+#       caTools,
+#       rpart,
+#       rpart.plot,
+#       randomForest,
+#       party, # another tree/classification package
+#       tree,
+#       magrittr,
+#       visreg,
+#       rattle, # fancy rpart plots
+#       reprtree,
+#       remotes
+#)
 
 #######################################
 # note: if reprtree not installed
@@ -65,25 +59,12 @@ sessionInfo()
 ################################################
 
 # load RData file
-# this is 202 data file
+# this is 2023 data file
 load("./data/original/SCDB_2023_01_justiceCentered_Docket.Rdata/SCDB_2023_01_justiceCentered_Docket.RData")
 # rename object to simpler name
 data <- SCDB_2023_01_justiceCentered_Docket # need this originally with first loading of data
 # remove original object that was loaded
 rm(SCDB_2023_01_justiceCentered_Docket)
-
-# load data from web; not working
-#temp <- tempfile()
-#download.file("http://scdb.wustl.edu/_brickFiles/2021_01/SCDB_2021_01_justiceCentered_Docket.Rdata.zip",temp)
-#data <- load(unz(temp, "SCDB_2021_01_justiceCentered_Docket.RData"))
-#unlink(temp)
-
-# save partial file with only data since 2000
-#temp <- subset(data, term>1999)
-#write.csv(temp, file="./data/working/SCDB_2021_01_justiceCentered_Docket_2000s.csv")
-
-# read csv file
-#data <- read.csv(file="./data/working/SCDB_2021_01_justiceCentered_Docket_2000s.csv")
 
 #################################################
 # Inspect/explore data
@@ -114,8 +95,7 @@ data %>%
 # confirm coding
 table(data$direction, data$directiondum)
 
-
-# later, after prediction, translate to affirm/reverse based on lower court direction
+# translate to affirm/reverse based on lower court direction
 # see coding notes at WUSTL site: http://wusct.wustl.edu/media/trees.pdf
 
 table(data$lcDispositionDirection)
@@ -1673,6 +1653,8 @@ preds
 ######################################################################
 
 # save data
-save.image("./data/working/working20230325.RData")
+save.image("./data/working/working20240325.RData")
+
+# can export images and this data file to own computer
 
 #end
