@@ -2,9 +2,9 @@
 #
 # Forecasting SC decisions
 # Matthew Ingram
-# RPOS 344
+# RPOS 344 and 427/527
 # UAlbany
-# Last revised: 2024-03-25
+# Last revised: 2025-04-01
 #
 #############################################
 
