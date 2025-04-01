@@ -1,4 +1,4 @@
-# Decision Trees for RPOS 344 (Spring 2024)
+# SCOTUS Decision Trees (data updated through OT2024)
 
 For remote access to computing resources covered in class, click on the logo below.
 
@@ -6,8 +6,8 @@ All you need is a web browser and internet access.
 
 To access RStudio directly:
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/mattcingram/344decisiontress_2024/HEAD?urlpath=rstudio)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/mattcingram/SCOTUS_decisiontrees/HEAD?urlpath=rstudio)
 
 To access JupyterLab environment:
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/mattcingram/344decisiontress_2024/HEAD)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/mattcingram/SCOTUSdecisiontrees/HEAD)
