@@ -20,5 +20,4 @@ dependencies:
   - r-visreg
   - r-rattle
   - r-remotes
-  - r-reprtree
   - r-rattle
