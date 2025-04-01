@@ -55,7 +55,7 @@ sessionInfo()
 
 # load RData file
 # this is OT2024 data file
-load("~/data/original/SCDB_2024_01_justiceCentered_Docket.RData")
+load("~/data/original/SCDB_2024_01_justiceCentered_Docket.Rdata")
 # rename object to simpler name
 data <- SCDB_2024_01_justiceCentered_Docket # need this originally with first loading of data
 # remove original object that was loaded
