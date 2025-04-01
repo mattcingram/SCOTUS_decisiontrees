@@ -1,4 +1,4 @@
-# SCOTUS Decision Trees (data updated through OT2024)
+# SCOTUS Decision Trees (data updated through OT2023)
 
 Author: Matt Ingram, [UAlbany](https://www.albany.edu/)
 
