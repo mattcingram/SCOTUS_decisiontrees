@@ -38,6 +38,7 @@ p_load(aod,
 )
 
 #######################################
+# SKIP THIS
 # note: if reprtree not installed
 
 # followed answer here: https://stackoverflow.com/questions/51210386/devtools-install-github-failes-for-reprtree
@@ -140,13 +141,13 @@ table(data$partyWinning)[[2]]/sum(table(data$partyWinning))
 # 0.6349175
 # 63.49%   # this is overall, historical reversal rate from 1946-2021
 
-# reversal rate from 1946-2022
-table(data$partyWinning[data$term<2022])[[2]]/sum(table(data$partyWinning[data$term<2022]))
+# reversal rate from 1946-2023
+table(data$partyWinning[data$term<2023])[[2]]/sum(table(data$partyWinning[data$term<2023]))
 # 0.6329865
 # 63.30%
 
 temp <- data.frame()
-term <- seq(1946, 2022, 1)
+term <- seq(1946, 2023, 1)
 for (i in term){
   rate <- table(data$partyWinning[data$term==i])[[2]]/sum(table(data$partyWinning[data$term==i]))
   temp <- rbind(temp, c(i, rate))
@@ -189,7 +190,7 @@ g <- ggplot(temp, aes(x=term, y=reversal_pct)) +
   theme_minimal()
 g
 
-png(filename="./figures/reversalratesOT1946-OT2022.png", width=6, height=6, units="in", res=300)
+png(filename="./figures/reversalratesOT1946-OT2023.png", width=6, height=6, units="in", res=300)
 g
 dev.off()
 
@@ -238,7 +239,7 @@ g <- ggplot(templib, aes(x=term, y=lclib_revpct)) +
   theme_minimal()
 g
 
-png(filename="./figures/lclib_reversalratesOT1946-OT2022.png", width=6, height=6, units="in", res=300)
+png(filename="./figures/lclib_reversalratesOT1946-OT2023.png", width=6, height=6, units="in", res=300)
 g
 dev.off()
 
@@ -284,7 +285,7 @@ g <- ggplot(temp2, aes(x=term, y=unan)) +
   theme_minimal()
 g
 
-png(filename="./figures/unanimous_cases_OT1946-OT2022.png", width=6, height=6, units="in", res=300)
+png(filename="./figures/unanimous_cases_OT1946-OT2023.png", width=6, height=6, units="in", res=300)
 g
 dev.off()
 
@@ -315,7 +316,7 @@ g <- ggplot(temp2, aes(x=term, y=unan2)) +
   theme_minimal()
 g
 
-png(filename="./figures/unanimous9-0and8-1_cases_OT1946-OT2022.png", width=6, height=6, units="in", res=300)
+png(filename="./figures/unanimous9-0and8-1_cases_OT1946-OT2023.png", width=6, height=6, units="in", res=300)
 g
 dev.off()
 
@@ -345,7 +346,7 @@ g <- ggplot(temp2, aes(x=term, y=split)) +
   theme_minimal()
 g
 
-png(filename="./figures/split5-4_cases_OT1946-OT2021.png", width=6, height=6, units="in", res=300)
+png(filename="./figures/split5-4_cases_OT1946-OT2023.png", width=6, height=6, units="in", res=300)
 g
 dev.off()
 
@@ -376,7 +377,7 @@ g <- ggplot(temp2, aes(x=term, y=split2)) +
   theme_minimal()
 g
 
-png(filename="./figures/split5-4and6-3_cases_OT1946-OT2022.png", width=6, height=6, units="in", res=300)
+png(filename="./figures/split5-4and6-3_cases_OT1946-OT2023.png", width=6, height=6, units="in", res=300)
 g
 dev.off()
 
@@ -421,8 +422,10 @@ hist(subset(data2, (issue==20180 | issue==20190))$term)
 
 
 ##############################################################################
-# e.g., subset OT2022 only
-#data <- subset(data, term==2022)
+# Question: what is the current "natural court"?
+# For justices on court as of OT2022
+# e.g., subset OT2022 and OT2023 only
+data3 <- subset(data2, term==2022 | term==2023)
 ##############################################################################
 
 
@@ -450,55 +453,51 @@ library(rpart.plot)
 # so that we end up with several mini-data sets. 
 #Each of the mini-data sets contains the votes of only that justice.
 
-# Question: what is the current "natural court"?
+barrett22_23 <- subset(data3, justiceName=="ACBarrett") 
+# this is all barrett votes; OT2022 and OT2023
 
-# For justices on court as of OT2022
-barrett22 <- subset(data2, justiceName=="ACBarrett" & term==2022) 
-# this is all barrett votes; OT2020 and OT2021
-
-barrett20_22 <- subset(data2, justiceName=="ACBarrett" & (term==2020 | 
-                                                            term==2021 |
-                                                            term==2022)) 
-# this is all barrett votes since she joined court in OT2020; OT2020-22
-# or, simply
-barrett <- subset(data2, justiceName=="ACBarrett") # all barrett
+# all barrett votes since she joined court in OT2020; OT2020-23
+barrett <- subset(data2, justiceName=="ACBarrett") 
 
 
-gorsuch <- subset(data2, justiceName=="NMGorsuch") # all gorsuch
-# just gorsuch ot22
-gorsuch22 <- subset(data2, justiceName=="NMGorsuch" & term==2022) #  gorsuch OT2020
+# just gorsuch since 2022
+gorsuch22_23 <- subset(data3, justiceName=="NMGorsuch") 
 # just gorsuch since 6-3 conservative majority
 gorsuch20_22 <- subset(data2, justiceName=="NMGorsuch" & (term==2020 | 
                                                               term==2021 |
                                                               term==2022)) 
+# all gorsuch
+gorsuch <- subset(data2, justiceName=="NMGorsuch") # all gorsuch
 
-roberts <- subset(data, justiceName=="JGRoberts") # all roberts
-roberts22 <- subset(data2, justiceName=="JGRoberts" & term==2022) #  roberts OT2020
+
+roberts22_23 <- subset(data3, justiceName=="JGRoberts") #  roberts OT2020
 # just roberts since 6-3 conservative majority
 roberts20_22 <- subset(data2, justiceName=="JGRoberts" & (term==2020 | 
                                                             term==2021 |
                                                             term==2022)) 
+#all roberts
+roberts <- subset(data2, justiceName=="JGRoberts") 
 
-thomas <- subset(data, justiceName=="CThomas") # all thomas
-thomas22 <- subset(data2, justiceName=="CThomas" & term==2022) 
+thomas <- subset(data2, justiceName=="CThomas") # all thomas
+thomas22_23 <- subset(data3, justiceName=="CThomas" & term==2022) 
 
-kavanaugh <- subset(data, justiceName=="BMKavanaugh") # all kavanaugh
-kavanaugh22 <- subset(data2, justiceName=="BMKavanaugh" &  term==2022) 
+kavanaugh <- subset(data2, justiceName=="BMKavanaugh") # all kavanaugh
+kavanaugh22_23 <- subset(data3, justiceName=="BMKavanaugh") 
 
-alito <- subset(data, justiceName=="SAAlito") # all alito
-alito22 <- subset(data2, justiceName=="SAAlito" & term==2022) 
+alito <- subset(data2, justiceName=="SAAlito") # all alito
+alito22_23 <- subset(data3, justiceName=="SAAlito") 
 
-sotomayor <- subset(data, justiceName=="SSotomayor") # all sotomayor
-sotomayor22 <- subset(data2, justiceName=="SSotomayor" & term==2022) 
+sotomayor <- subset(data2, justiceName=="SSotomayor") # all sotomayor
+sotomayor22_23 <- subset(data3, justiceName=="SSotomayor") 
 
-kagan <- subset(data, justiceName=="EKagan") # all kagan
-kagan22 <- subset(data2, justiceName=="EKagan" & term==2022)
+kagan <- subset(data2, justiceName=="EKagan") # all kagan
+kagan22_23 <- subset(data3, justiceName=="EKagan")
 
-jackson <- subset(data, justiceName=="KBJackson") # all kagan
-jackson22 <- subset(data2, justiceName=="KBJackson" & term==2022)
+jackson <- subset(data2, justiceName=="KBJackson") # all jackson
+jackson22_23 <- subset(data3, justiceName=="KBJackson") # should be the same
 
-
-save.image("./data/working/working20240311.RData")
+date <- Sys.Date()
+save.image(paste("./data/working/working_", date, ".RData", sep="")
 
 # Other justices
 #ginsburg1 <- subset(data, justiceName=="RBGinsburg" & term<2002 & term>1995) # term< 2002 to see if can 
@@ -545,7 +544,7 @@ save.image("./data/working/working20240311.RData")
 ##############################################################################
 
 # load processed data
-load("./data/working/working20240311.RData")
+#load("./data/working/working20240311.RData")
 
 # Sotomayor Trees
 
@@ -554,7 +553,7 @@ load("./data/working/working20240311.RData")
 #OT2022
 
 #using package caTools
-df <- sotomayor22
+df <- sotomayor22_23
 set.seed(3000)
 spl = sample.split(df$reverse, SplitRatio = .7)
 Train = subset(df, spl==TRUE)
@@ -569,11 +568,11 @@ prp(SotomayorTree)
 fancyRpartPlot(SotomayorTree)
 par(oma=c(0,0,0,1))
 
-png(filename="./figures/OT2020/sotomayor22p.png", width=6, height=6, units="in", res=300)
+png(filename="./figures/sotomayor2223p.png", width=6, height=6, units="in", res=300)
 prp(SotomayorTree)
 dev.off()
 
-png(filename="./figures/OT2020/sotomayor22fp.png", width=6, height=6, units="in", res=300)
+png(filename="./figures/sotomayor2223fp.png", width=6, height=6, units="in", res=300)
 fancyRpartPlot(SotomayorTree)
 dev.off()
 
@@ -589,17 +588,17 @@ preds
 #Accuracy = (topleft + bottomright)/total
 
 (preds[1]+preds[4])/(sum(preds[1:4]))
-# 54.55% for 2022
+# 54.55% for 2022-23
 
 # Questions:
 # - is this good?
 # - why or why not?
 
 
-# what next? all? 2021?
+# what next? all? 
 
 #using package caTools
-df <- sotomayor21
+df <- sotomayor
 set.seed(3000)
 spl = sample.split(df$reverse2, SplitRatio = 0.7)
 Train = subset(df, spl==TRUE)
@@ -614,11 +613,11 @@ prp(SotomayorTree)
 fancyRpartPlot(SotomayorTree)
 par(oma=c(0,0,0,1))
 
-png(filename="./figures/OT2021/sotomayor20p.png", width=6, height=6, units="in", res=300)
+png(filename="./figures/sotomayorallp.png", width=6, height=6, units="in", res=300)
 prp(SotomayorTree)
 dev.off()
 
-png(filename="./figures/OT2021/sotomayor20fp.png", width=6, height=6, units="in", res=300)
+png(filename="./figures/sotomayor20fp.png", width=6, height=6, units="in", res=300)
 fancyRpartPlot(SotomayorTree)
 dev.off()
 
@@ -714,125 +713,6 @@ preds
 
 (preds[1]+preds[4])/(sum(preds[1:4]))
 # 67.1%
-
-###############################################
-# Breyer Trees
-
-# OT2020
-
-### Subset training and testing data 
-
-#using package caTools
-df <- breyer20
-set.seed(3000)
-spl = sample.split(df$reverse2, SplitRatio = 0.7)
-Train = subset(df, spl==TRUE)
-Test = subset(df, spl==FALSE)
-
-BreyerTree = rpart(reverse2 ~ caseSource + issueArea + petitioner + respondent +
-                     lcdirectiondum + lawType,# + term, 
-                   data = Train, method="class", control = rpart.control(minsplit = 5, minbucket= 2))
-prp(BreyerTree)
-fancyRpartPlot(BreyerTree)
-par(oma=c(0,0,0,1))
-
-png(filename="./figures/OT2020/breyer20p.png", width=6, height=6, units="in", res=300)
-prp(BreyerTree)
-dev.off()
-
-png(filename="./figures/OT2020/breyer20fp.png", width=6, height=6, units="in", res=300)
-fancyRpartPlot(BreyerTree)
-dev.off()
-
-## Predictions
-
-PredictCART = predict(BreyerTree, newdata = Test, type = "class")
-# if use factored out predictors above, predict command may generate errors if have categories
-# that were in training data but not in testing data
-preds <- table(Test$directiondum, PredictCART)
-preds
-
-## Accuracy
-#Accuracy = (topleft + bottomright)/total
-
-(preds[1]+preds[4])/(sum(preds[1:4]))
-# 50%
-
-# OT2021
-
-df <- breyer21
-set.seed(3000)
-spl = sample.split(df$reverse2, SplitRatio = 0.7)
-Train = subset(df, spl==TRUE)
-Test = subset(df, spl==FALSE)
-
-BreyerTree = rpart(reverse2 ~ caseSource + issueArea + petitioner + respondent +
-                     lcdirectiondum + lawType,# + term, 
-                   data = Train, method="class", control = rpart.control(minsplit = 5, minbucket= 2))
-prp(BreyerTree)
-fancyRpartPlot(BreyerTree)
-par(oma=c(0,0,0,1))
-
-png(filename="./figures/OT2021/breyer20p.png", width=6, height=6, units="in", res=300)
-prp(BreyerTree)
-dev.off()
-
-png(filename="./figures/OT2021/breyer20fp.png", width=6, height=6, units="in", res=300)
-fancyRpartPlot(BreyerTree)
-dev.off()
-
-## Predictions
-
-PredictCART = predict(BreyerTree, newdata = Test, type = "class")
-# if use factored out predictors above, predict command may generate errors if have categories
-# that were in training data but not in testing data
-preds <- table(Test$reverse2, PredictCART)
-preds
-
-## Accuracy
-#Accuracy = (topleft + bottomright)/total
-
-(preds[1]+preds[4])/(sum(preds[1:4]))
-#50%
-
-# OT2020-2021
-
-df <- breyer20_21
-set.seed(3000)
-spl = sample.split(df$reverse, SplitRatio = 0.7)
-Train = subset(df, spl==TRUE)
-Test = subset(df, spl==FALSE)
-
-BreyerTree = rpart(reverse ~ caseSource + issueArea + petitioner + respondent +
-                     lcdirectiondum + lawType,# + term, 
-                   data = Train, method="class", control = rpart.control(minsplit = 5, minbucket= 2))
-prp(BreyerTree)
-fancyRpartPlot(BreyerTree)
-par(oma=c(0,0,0,1))
-
-png(filename="./figures/OT2020_21/breyer20_21p.png", width=6, height=6, units="in", res=300)
-prp(BreyerTree)
-dev.off()
-
-par(oma=c(0,0,0,1))
-
-png(filename="./figures/OT2020_21/breyer20_21fp.png", width=6, height=6, units="in", res=300)
-fancyRpartPlot(BreyerTree)
-dev.off()
-
-par(oma=c(0,0,0,1))
-
-PredictCART = predict(BreyerTree, newdata = Test, type = "class")
-# if use factored out predictors above, predict command may generate errors if have categories
-# that were in training data but not in testing data
-preds <- table(Test$reverse, PredictCART)
-preds
-
-## Accuracy
-#Accuracy = (topleft + bottomright)/total
-(preds[1]+preds[4])/(sum(preds[1:4]))
-
-# 51.72%
 
 ###############################################################
 # Kagan Tree
@@ -1653,7 +1533,7 @@ preds
 ######################################################################
 
 # save data
-save.image("./data/working/working20240325.RData")
+save.image(paste("./data/working/data_", date, ".RData", sep=""))
 
 # can export images and this data file to own computer
 
