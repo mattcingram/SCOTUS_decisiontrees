@@ -38,19 +38,13 @@ p_load(aod,
 )
 
 #######################################
-# SKIP THIS
 # note: if reprtree not installed
+# followed answer here: https://github.com/araastat/reprtree/issues/12
 
-# followed answer here: https://stackoverflow.com/questions/51210386/devtools-install-github-failes-for-reprtree
-# You can download the package as a .zip and unzip it. 
-# Then remove everything after line 39 in ./man/text.tree.RD. Afterwards you can install the package like this:
+library(devtools)
+devtools::install_github('araastat/reprtree')
+library(reprtree)
 
-#library(devtools)
-#if(!('reprtree' %in% installed.packages())){
-#  install_local('C:/Users/mi122167/Desktop/reprtree-master/reprtree-master/')
-#}
-#library(reprtree)
-# WORKS!!!
 ########################################
 
 sessionInfo()
