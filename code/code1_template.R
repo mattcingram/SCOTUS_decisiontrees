@@ -59,12 +59,12 @@ sessionInfo()
 ################################################
 
 # load RData file
-# this is 2023 data file
-load("~/data/original/SCDB_2023_01_justiceCentered_Docket.RData")
+# this is OT2024 data file
+load("~/data/original/SCDB_2024_01_justiceCentered_Docket.RData")
 # rename object to simpler name
-data <- SCDB_2023_01_justiceCentered_Docket # need this originally with first loading of data
+data <- SCDB_2024_01_justiceCentered_Docket # need this originally with first loading of data
 # remove original object that was loaded
-rm(SCDB_2023_01_justiceCentered_Docket)
+rm(SCDB_2024_01_justiceCentered_Docket)
 
 #################################################
 # Inspect/explore data
