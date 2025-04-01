@@ -1,6 +1,6 @@
 # SCOTUS Decision Trees (data updated through OT2024)
 
-Author: Matt Ingram, UAlbany
+Author: Matt Ingram, [UAlbany](https://www.albany.edu/)
 
 For remote access to computing resources covered in class, click on the logo below.
 
